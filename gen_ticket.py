@@ -162,7 +162,6 @@ Description (4k char limit)
 """
 # Create a new ticket, ONLY VERIFY contents.
 def create(tick_dict, DEBUG=False):
-  pdb.set_trace()
   if type(tick_dict) == dict:
     try:
       ## Force all values to be strings
