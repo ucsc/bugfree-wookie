@@ -41,7 +41,6 @@ except Exception:
   sys.stderr.write("between \'\' input the username and password.\n")
   sys.exit(1)
 
-debug=True
 ## Long Term Support for this script.
 support_email="lthurlow@ucsc.edu"
 
@@ -86,7 +85,7 @@ def email_error(err):
 ## Assumption: this should not fail unless it is mail
 ## related, all fields should have been satized before
 ## being sent to this function.
-def send_email(ticket):
+def send_email(ticket, debug=False):
   try:
     mailserv = smtplib.SMTP_SSL("smtp.gmail.com", 465)
     mailserv.login(credentials.mail_user,\
@@ -162,7 +161,7 @@ incident_state: 1
 Description (4k char limit)
 """
 # Create a new ticket, ONLY VERIFY contents.
-def create(tick_dict):
+def create(tick_dict, DEBUG=False):
   pdb.set_trace()
   if type(tick_dict) == dict:
     try:
@@ -220,7 +219,7 @@ def create(tick_dict):
 
     ## All else is fine, time to ship it.
     try:
-      send_email(tick_dict)
+      send_email(tick_dict, DEBUG)
       ## ITR generation wont give us INC number, so best we can
       ## do is let the owners know that it succeeded.
       return 0
