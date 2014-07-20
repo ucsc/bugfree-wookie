@@ -1,1 +1,3 @@
 crendentials.py
+*.pyc
+*.err
