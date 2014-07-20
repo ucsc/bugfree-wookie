@@ -22,6 +22,7 @@ import smtplib
 import traceback
 import email.mime.text
 import pdb
+import sys
 
 ## Check if we have a credentials file, explain for new
 ## users unfamiliar with python, how to generate this file
