@@ -131,7 +131,6 @@ def send_email(ticket, debug=False):
  
     ## This is where I would suspect the function to fail.
     try:              
-      msg = email.mime.text.MIMEText(msg_str)
       mailserv.sendmail(From, To, msg.as_string())
     except Exception as e:
       ## email error to support
