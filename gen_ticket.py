@@ -91,18 +91,6 @@ def send_email(ticket, debug=False):
     mailserv.login(credentials.mail_user,\
                    credentials.mail_pass)
 
-    msg = email.mime.text.MIMEText('')
-    # Email Header Information
-    To = support_email
-    if debug:
-      To = "ucsclearn@service-now.com"
-      msg["To"] = To
-    else:
-      To = "ucsc@service-now.com"
-      msg["To"] = To
-    From = credentials.mail_user
-    msg["From"] = From
-    msg["Subject"] = str(ticket["title"])
     sep = ":"
     nl = "\n"
     ## Creating ticket format
@@ -130,7 +118,20 @@ def send_email(ticket, debug=False):
         write_error(ret_code, orig_fail)
  
     ## This is where I would suspect the function to fail.
-    try:              
+    try:
+      msg = email.mime.text.MIMEText(msg_str)
+      # Email Header Information
+      To = support_email
+      if debug:
+        To = "ucsclearn@service-now.com"
+        msg["To"] = To
+      else:
+        To = "ucsc@service-now.com"
+        msg["To"] = To
+      From = credentials.mail_user
+      msg["From"] = From
+      msg["Subject"] = str(ticket["title"])
+
       mailserv.sendmail(From, To, msg.as_string())
     except Exception as e:
       ## email error to support
