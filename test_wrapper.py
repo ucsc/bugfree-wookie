@@ -1,6 +1,7 @@
 #!/usr/bin/python
 
 import gen_ticket
+import pdb
 
 full_empty = {
   'client_email':"", # not reqr, auto sender
@@ -21,12 +22,13 @@ default = {
   'assigned_to':"",
   'priority':"2",
   'desc':"Scripted-default test",
-  'title':"Script: test-defaultv1",
+  'title':"Script: test-defaultv3",
+  'cc':'lthurlow@ucsc.edu',
 }
 
 
-x1 = gen_ticket.create(full_empty,debug=True)
-x2 = gen_ticket.create(default, debug=True)
+#x1 = gen_ticket.create(full_empty,True)
+x2 = gen_ticket.create(default,True)
 
-print "x1", x1
+#print "x1", x1
 print "x2", x2
