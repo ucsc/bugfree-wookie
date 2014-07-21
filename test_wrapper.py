@@ -25,8 +25,8 @@ default = {
 }
 
 
-x1 = gen_ticket.create(full_empty)
-#x2 = gen_ticket.create(default)
+x1 = gen_ticket.create(full_empty,debug=True)
+x2 = gen_ticket.create(default, debug=True)
 
 print "x1", x1
-#print "x2", x2
+print "x2", x2
