@@ -3,7 +3,7 @@ bugfree-wookie
 
 Automatically Generate ITR Tickets!! (Service Now)
 
-ITR Ticket Fields: [example](https://github.com/ucsc/bugfree-wookie/blob/master/test_wrapper.py)
+####ITR Ticket Fields: [example](https://github.com/ucsc/bugfree-wookie/blob/master/test_wrapper.py)
 
 | variable         | required | purpose           | default value              |
 | ---------------- | -------- | ----------------- | -------------------------- |
@@ -21,11 +21,12 @@ ITR Ticket Fields: [example](https://github.com/ucsc/bugfree-wookie/blob/master/
 
 The values need to match up exactly with the ITR versions on service-now.  
 
-create(ticket, debug=False) function should be called by your external script.  debug value is used for sending test emails to ucsclearn@service-now.com.  Create is used to sanitize the inputs and return as many error codes as possible to make sure that the calling function knows that ticket was not created.  It is not possible to know that the ticket was created, no feedback is given when it is created.  In this matter, it is better to give as much feedback by erroring in the main function.
+#####create(ticket, debug=False) 
+Function should be called by your external script.  debug value is used for sending test emails to ucsclearn@service-now.com.  Create is used to sanitize the inputs and return as many error codes as possible to make sure that the calling function knows that ticket was not created.  It is not possible to know that the ticket was created, no feedback is given when it is created.  In this matter, it is better to give as much feedback by erroring in the main function.
 
 create calls both send\_email() and error\_email().  Send email is the function athat will actually send the email, and error email, will send an email to the support\_email specified if an error is raised.
 
-Error codes for create()
+####Error codes for create
 
 | Error Code | Meaning                                             |
 | ---------- | --------------------------------------------------- |
@@ -38,5 +39,13 @@ Error codes for create()
 | 120        | Sending error mail failed                           |
 | 130        | passed in variable was not a dictionary             |
 | 200        | Error converting values of dict into strings        |
+
+####Send\_Email(ticket, debug=False)
+
+send mail will join the dictionary with ':' between the key and value elements for ITR to parse.  It will return an error code of 900 and 901 if an error occurs when sending the email.  If such an error occurs, error\_email() will be called.
+
+####Error\_Email(err)
+
+Will send an email with the error that was uncaught to the support\_email.  If this function fails, write\_error() is called, which will write the original error as well as the email error to the file error.log.
 
 
