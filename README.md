@@ -3,6 +3,11 @@ bugfree-wookie
 
 Automatically Generate ITR Tickets!! (Service Now)
 
+###First use!
+Make sure that if you want to use the production ITR system that you have your email or functional account emailed okay'd by Rex Core or Marian Sherrin and let them know that you need a generic template with the table below.  Once they have approved your inbound email address, ITR will accept your emails with the template for this script.
+
+Next, you will need to generate a _crendentials.py_ file which needs to contain _mail\_user_='mail username' and _mail\_pass_='mail password'.  This file is not tracked by github, but you should restrict permissions to reduce leakage.  If you need more security, feel free to fork the repo and make the necessary modifications.
+
 ####ITR Ticket Fields: [example](https://github.com/ucsc/bugfree-wookie/blob/master/test_wrapper.py)
 
 | variable         | required | purpose           | default value              |
@@ -49,3 +54,6 @@ send mail will join the dictionary with ':' between the key and value elements f
 Will send an email with the error that was uncaught to the support\_email.  If this function fails, write\_error() is called, which will write the original error as well as the email error to the file error.log.
 
 
+####Other comments
+
+The fields classified as required, are not essentially required by the ITR system.  However creating a ticket without a title, a group for the ticket or a application section is not good enough for automation scripts.  If you would like to create tickets without these fields, send an email to ucsc@service-now with only the fields you need.
