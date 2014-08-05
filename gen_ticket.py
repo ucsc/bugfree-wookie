@@ -242,5 +242,21 @@ def create(tick_dict, DEBUG=False):
 
 ## TODO: KB0017170 implementation
 ## Just for SOE -> 48/22 and 5/24 
-def helper():
-  return
+def assign_group(ip=None,hostname=None):
+  if type(ip) == str:
+    ip_dom = int(ip.split('.')[2])
+    if ip_dom == 5 or (ip_dom >= 48 and ip_dom <= 51):
+      return "SOE"
+  if type(hostname) == str:
+    domain = hostname.split('.').split('-')
+    if "eduroam" in domain:
+      return "eduroam"
+    elif "cruznet" in domain:
+      return "cruznet"
+    elif "resnet" in domain:
+      return "resnet"
+    elif "fsh" in domain:
+      return "fsh"
+    elif "dhcp" in domain:
+      return None
+  return None
